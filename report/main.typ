@@ -6,6 +6,24 @@
 #set heading(numbering: "1.")
 #set par(justify: true)
 
+#let accent = rgb("#C0392B")
+
+#show link: it => text(fill: accent)[#it]
+
+#set highlight(
+  fill: gradient.linear(
+    rgb("#80FFDB"),
+    rgb("#48CAE4"),
+    rgb("#06D6A0"),
+    rgb("#0096C7"),
+    rgb("#80FFDB"),
+    angle: 135deg,
+  ),
+  stroke: 0.75pt + rgb("#06D6A0"),
+  radius: 4pt,
+  extent: 3pt,
+)
+
 // --- Cover page ---
 #page(
   margin: (x: 3cm, y: 4cm),

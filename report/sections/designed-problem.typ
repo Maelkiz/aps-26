@@ -2,13 +2,40 @@
 
 == Problem description
 
-You are Warchief Grukk, commanding an assault on $N$ dwarven strongholds. Each stronghold is a network of one-way mine shafts: carts can only travel in one direction through each tunnel (the network is a directed graph). Deep inside each stronghold is the Gold Vein (room $0$, the source); the entrance where wolf-riders wait is room $V_i - 1$ (the sink). Each tunnel has a weight limit (capacity) giving the maximum kilograms of gold carts can carry through it per hour. Your miners extract gold at the maximum possible rate — the max-flow of the network.
+You are Warchief Grukk, and today is a good day for war. Your Horde stands ready to crush the Dwarven Underkingdom, $N$ strongholds carved deep into the mountains, each sitting on rich veins of gold.
 
-Each stronghold costs $c_i$ orc warriors to conquer. You have $B$ warriors total. Choose which strongholds to conquer to maximise total gold extracted.
+Your goblin scouts (small, sneaky, and not terribly bright) have somehow wormed their way into every stronghold through cracks and drain pipes the dwarves forgot to seal. They came back clutching crumpled maps scratched onto hide scraps, giggling about "shiny rocks." The maps are crude but surprisingly accurate: each one shows the layout of tunnels inside a stronghold.
 
-*Input.* First line: integers $N$ and $B$ $(1 <= N <= 50, 1 <= B <= 1000)$. Then $N$ stronghold descriptions, each starting with: name $s_i$ (lowercase, length $<= 20$), cost $c_i$ $(1 <= c_i <= B)$, rooms $V_i$ $(2 <= V_i <= 15)$, edges $E_i$ $(1 <= E_i <= 40)$. Followed by $E_i$ lines each giving $u$, $v$, $w$ for a directed tunnel from room $u$ to $v$ with capacity $w$ $(1 <= w <= 100)$.
+Deep inside each stronghold sits the _Gold Vein_ (room $0$), where the richest ore waits to be mined. Once you conquer a stronghold, your goblin miners will dig out the gold and load it into mine carts that run through the tunnel network to the stronghold entrance (room $V_i - 1$), where your wolf-riders wait with wagons.
 
-*Output.* One line per selected stronghold, format `<index> <name>`, in ascending index order. The optimal subset is guaranteed unique.
+Each tunnel is _one-way_: mine carts can only travel in one direction through it, carved that way to keep traffic from jamming. Each tunnel also has a _weight limit_: the maximum kilograms of gold ore that a mine cart can carry through it per hour. Some tunnels are wide enough for a troll to stroll through; others are barely goblin-sized. Your miners will haul as much gold as physically possible from the vein to the entrance, using every tunnel to its limit simultaneously. You need to figure out how much gold each stronghold can yield.
+
+But strongholds do not fall for free. The dwarves fight like cornered badgers behind their stone barricades. Each assault costs orc warriors their lives. You can muster exactly $B$ warriors for the entire campaign, and you must conquer your chosen strongholds before the elven relief army arrives. Choose which strongholds to take to maximise the total gold your miners extract. Each stronghold can only be taken once.
+
+Present your _Siege Plans_ to the war council: the list of strongholds the Horde will conquer.
+
+*Input*
+
+The first line contains two integers $N$ and $B$ $(1 <= N <= 50, 1 <= B <= 1000)$, the number of dwarven strongholds and the number of orc warriors available.
+
+Then $N$ stronghold descriptions follow. Each stronghold starts with a line containing:
+
+- a string $s_i$, the name of the stronghold (lowercase `a`--`z`, no whitespace, length $<= 20$),
+- an integer $c_i$ $(1 <= c_i <= B)$, the number of orc warriors lost conquering it,
+- an integer $V_i$ $(2 <= V_i <= 15)$, the number of rooms,
+- an integer $E_i$ $(1 <= E_i <= 40)$, the number of tunnels.
+
+The next $E_i$ lines each describe one tunnel with three integers $u$, $v$, $w$ $(0 <= u, v < V_i, u != v, 1 <= w <= 100)$, meaning a one-way tunnel from room $u$ to room $v$ with weight limit $w$.
+
+Room $0$ is the Gold Vein (source) and room $V_i - 1$ is the entrance (sink).
+
+*Output*
+
+Output the strongholds you should conquer to maximise total gold extracted without exceeding the warrior budget $B$. Print one line per selected stronghold in the format:
+
+#block(inset: (left: 1.5em))[`<index> <name>`]
+
+where `<index>` is the 0-based position of the stronghold in the input. Lines must appear in ascending order of index. It is guaranteed that the optimal subset is unique.
 
 *Sample input 1:*
 ```
@@ -36,7 +63,7 @@ Max-flows: ironkeep = 2 (bottleneck edge 1→2, cap 2), stonewall = 4 (two augme
 
 == Intended solution
 
-The problem decomposes into two independent subproblems applied sequentially:
+The problem decomposes into #highlight[two independent subproblems applied sequentially]:
 
 1. *Per-stronghold max-flow.* For each stronghold $i$, compute the maximum flow from room $0$ to room $V_i - 1$ using Edmonds-Karp (BFS-augmented Ford-Fulkerson). This gives the gold value $g_i$.
 
