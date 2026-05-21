@@ -1,4 +1,4 @@
-== Robert Hood
+== Robert Hood (Geometric Algorithms)
 
 === Problem metadata
 
