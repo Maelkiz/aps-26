@@ -7,7 +7,7 @@
 ### Project structure
 ```
 aps-26/
-├── problem/ # contains the kattis problem have designed
+├── problem/ # contains the kattis problem we have designed
 ├── solutions/ # contains solutions for the problems we have solved 
 ├── report/ # contains files related to the report 
 └── README.md
