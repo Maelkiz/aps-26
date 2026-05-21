@@ -53,5 +53,3 @@
 #include "sections/abstract.typ"
 #include "sections/designed-problem.typ"
 #include "sections/solved-problems.typ"
-#include "sections/appendix-a.typ"
-#include "sections/appendix-b.typ"
