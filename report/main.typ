@@ -47,6 +47,9 @@
 #set page(numbering: "1")
 #counter(page).update(1)
 
+#outline(indent: auto)
+#pagebreak()
+
 #include "sections/abstract.typ"
 #include "sections/designed-problem.typ"
 #include "sections/solved-problems.typ"
