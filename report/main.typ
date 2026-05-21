@@ -32,7 +32,7 @@
       ],
       [*Supervisor*],  [Holger Dell, Martin Aumüller],
       [*Course*],      [Algorithmic Problem Solving (APS 2026)],
-      [*Date*],        [[YYYY-MM-DD]],
+      [*Date*],        [2026-05-22],
     )
 
     v(1fr)

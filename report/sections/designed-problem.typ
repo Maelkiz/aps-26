@@ -101,7 +101,7 @@ Edmonds-Karp max-flow per stronghold, then 0/1 knapsack DP with backtracking. Bo
 Enumerates all $2^N$ subsets, computes total cost and gold for each, and keeps the best feasible subset. Correct for small $N$ but $2^(50) approx 10^(15)$ iterations makes it infeasible for $N = 50$. Used to verify correctness of the DP solution on small inputs.
 
 *WA — `submissions/wrong_answer/greedy.py`:*
-Sorts strongholds by the gold-per-warrior ratio $g_i / c_i$ descending and greedily adds items as long as they fit in the remaining budget. This is the optimal strategy for *fractional* knapsack but fails for 0/1 knapsack. Counter-example from sample 1: ratios are stonewall $approx 0.67$, thornhold $0.75$, ironkeep $approx 0.67$. Greedy picks thornhold ($c=4$, $g=3$) then ironkeep ($c=3$, $g=2$), total cost $7$, gold $5$. Optimal is stonewall + thornhold ($c=10$, $g=7$).
+Sorts strongholds by the gold-per-warrior ratio $g_i / c_i$ descending and greedily adds items as long as they fit in the remaining budget. This is the optimal strategy for *fractional* knapsack but fails for 0/1 knapsack. Counter-example from sample 2 ($B=10$): ravencrest has ratio $5/4=1.25$, wolfgate $4/4=1.0$, dragonspire $6/6=1.0$. Greedy picks ravencrest ($c=4$, $g=5$) then wolfgate ($c=4$, $g=4$), total gold $= 9$. Optimal is dragonspire + ravencrest ($c=10$, $g=11$): the lower-ratio dragonspire contributes more absolute gold than wolfgate, which the ratio heuristic cannot see.
 
 == Input validation & formatting
 
