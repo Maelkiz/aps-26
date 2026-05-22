@@ -9,7 +9,7 @@ def query(x: int, y: int) -> str:
 def solve() -> None:
     w, h = map(int, sys.stdin.readline().split())
     
-    # Monte Carlo: randomize column order
+    # Monte Carlo: randomize column order to avoid worse-case scenario
     columns = list(range(1, w + 1))
     random.shuffle(columns)
     
