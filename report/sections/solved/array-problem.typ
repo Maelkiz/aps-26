@@ -51,6 +51,7 @@ This produces $2 times 10^5$ lines: $10^5$ insertions followed by $10^5$ queries
 
 === Implementation notes
 
+- *Attributed to:* Karl Theodor Ruby (krub\@itu.dk)
 - *Language used:* Python 3
 - *Files:* `solutions/arrays/cookieselection.py`
 - *How to run:* `python3 solutions/arrays/cookieselection.py < input.txt`
