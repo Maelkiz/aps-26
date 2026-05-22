@@ -63,11 +63,13 @@ Max-flows: ironkeep = 2 (bottleneck edge 1→2, cap 2), stonewall = 4 (two augme
 
 == Intended solution
 
+*Curriculum coverage.* The problem combines two paradigms from the course curriculum: *network flow* (max-flow / Ford-Fulkerson family), which is the central algorithmic component, and *dynamic programming* (0/1 knapsack), which selects the optimal subset of strongholds under the warrior budget. We nominate *Dynamic Programming* as the curriculum topic this designed problem covers for exam-cancellation purposes.
+
 The problem decomposes into #highlight[two independent subproblems applied sequentially]:
 
 1. *Per-stronghold max-flow.* For each stronghold $i$, compute the maximum flow from room $0$ to room $V_i - 1$ using Edmonds-Karp (BFS-augmented Ford-Fulkerson). This gives the gold value $g_i$.
 
-2. *0/1 Knapsack DP.* Treat each stronghold as a knapsack item with weight $c_i$ and value $g_i$. Find the subset of items with total weight $<= B$ that maximises total value.
+2. *0/1 Knapsack DP.* Treat each stronghold as a knapsack item with weight $c_i$ and value $g_i$. Find the subset of items with total weight $<= B$ that maximises total value using bottom-up dynamic programming over a 2D table $"dp"[i][j]$ (best gold using first $i$ items, budget $j$), then backtrack through the table to recover the chosen indices.
 
 ```
 function solve():
