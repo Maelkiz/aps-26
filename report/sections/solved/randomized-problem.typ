@@ -18,7 +18,7 @@
 
 === Complexity and time-limit reasoning
 
-- *Queries per sampled column*: In the worst case, a sampled column incurs one upward probe plus O(log h) queries for the binary search when successful.
+- *Queries per sampled column*: In the worst case, a sampled column incurs one upward probe plus O(log h) queries for the binary search @laaksonen2018competitive[§3.3, p. 31] when successful.
 - *Overall*: Expected number of probes depends on how many columns must be sampled before finding the global maximum; for typical inputs the randomized order finds the tallest column quickly, bounding total queries by roughly O(k log h) where $k$ is the number of promising columns encountered.
 
 === Empirical behavior and robustness
@@ -30,9 +30,5 @@
 
 - *Attributed to:* Kristoffer Mejborn Eliasson (krme\@itu.dk)
 - *Language used*: Python 3
-- *Files*: [solutions/random/jaggedskyline.py](solutions/random/jaggedskyline.py)
-- *How to run*: Run against the `testing_tool.py` script which is given in the the problem description on the [Kattis page](https://open.kattis.com/problems/jaggedskyline).
-
-=== References
-
-- *Source*: Monte Carlo sampling pattern implemented in [solutions/random/jaggedskyline.py](solutions/random/jaggedskyline.py).
+- *Source listing*: @app-jaggedskyline
+- *How to run*: Run against the `testing_tool.py` script which is given in the problem description on the [Kattis page](https://open.kattis.com/problems/jaggedskyline).

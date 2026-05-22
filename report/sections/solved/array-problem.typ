@@ -9,7 +9,7 @@
 
 The core challenge is maintaining a dynamic multiset that supports two operations in sublinear time: insertion of an element and extraction of the element at a given rank. A naive sorted list achieves $O(n)$ per operation, which is too slow for $n = 2 times 10^5$.
 
-The solution uses a Fenwick tree over coordinate-compressed values. Because cookie diameters are up to $10^9$ but there are at most $2 times 10^5$ distinct values in the input, all values are mapped to contiguous indices $1, 2, dots, m$ where $m$ is the number of distinct values. The BIT stores counts: position $i$ holds how many cookies with compressed value $i$ are currently in the holding area. A prefix sum query then gives the number of cookies with value at most $i$.
+The solution uses a Fenwick tree (binary indexed tree, @laaksonen2018competitive[§9.2, p. 86]) over coordinate-compressed values. Because cookie diameters are up to $10^9$ but there are at most $2 times 10^5$ distinct values in the input, all values are mapped to contiguous indices $1, 2, dots, m$ where $m$ is the number of distinct values. The BIT stores counts: position $i$ holds how many cookies with compressed value $i$ are currently in the holding area. A prefix sum query then gives the number of cookies with value at most $i$.
 
 To answer a rank query for rank $k$, the solution uses a binary descent on the BIT structure, finding the smallest index $i$ such that the prefix sum up to $i$ is at least $k$. This descent runs in $O(log m)$ rather than $O(log^2 m)$ compared to binary searching over prefix sum queries.
 
@@ -53,5 +53,5 @@ This produces $2 times 10^5$ lines: $10^5$ insertions followed by $10^5$ queries
 
 - *Attributed to:* Karl Theodor Ruby (krub\@itu.dk)
 - *Language used:* Python 3
-- *Files:* `solutions/arrays/cookieselection.py`
-- *How to run:* `python3 solutions/arrays/cookieselection.py < input.txt`
+- *Source listing:* @app-cookieselection
+- *How to run:* pipe the input file into the script via standard input.
