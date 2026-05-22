@@ -1,4 +1,4 @@
-== Cookie Selection (Interval Queries)
+== Cookie Selection (Algorithms on Arrays)
 
 === Problem metadata
 
