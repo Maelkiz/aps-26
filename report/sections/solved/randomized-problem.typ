@@ -28,9 +28,10 @@
 
 === Implementation notes
 
+- *Attributed to:* Kristoffer Mejborn Eliasson (krme\@itu.dk)
 - *Language used*: Python 3
 - *Files*: [solutions/random/jaggedskyline.py](solutions/random/jaggedskyline.py)
-- *How to run*: Run against an interactive judge that speaks the protocol. Locally, pair the script with a test interactor or use judge-provided tools. The script prints queries of the form `? x y` and expects a single-line response (e.g. `building` or other negative token), and finishes by printing `! x h`.
+- *How to run*: Run against the `testing_tool.py` script which is given in the the problem description on the [Kattis page](https://open.kattis.com/problems/jaggedskyline).
 
 === References
 

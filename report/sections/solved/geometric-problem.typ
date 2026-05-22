@@ -52,6 +52,7 @@ Running this input on the solution completed in approximately 0.73 seconds in CP
 
 === Implementation notes
 
+- *Attributed to:* Lukas Shaghashvili-Johanesson (lush\@itu.dk)
 - *Language used:* Python 3
 - *Files:* `solutions/geometry/roberthood.py`
 - *How to run:* `python3 solutions/geometry/roberthood.py < input.txt`
