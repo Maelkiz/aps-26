@@ -50,31 +50,50 @@ fn max_flow(num_nodes: usize, edges: &[(usize, usize, i64)], source: usize, sink
     total_flow
 }
 
+struct Scanner<'a> {
+    tokens: Vec<&'a str>,
+    pos: usize,
+}
+
+impl<'a> Scanner<'a> {
+    fn new(input: &'a str) -> Self {
+        Scanner {
+            tokens: input.split_whitespace().collect(),
+            pos: 0,
+        }
+    }
+    fn s(&mut self) -> &'a str {
+        let t = self.tokens[self.pos];
+        self.pos += 1;
+        t
+    }
+    fn i(&mut self) -> i64 {
+        self.s().parse::<i64>().unwrap()
+    }
+}
+
 fn main() {
     let mut input = String::new();
     io::stdin().read_to_string(&mut input).unwrap();
-    let tokens: Vec<&str> = input.split_whitespace().collect();
-    let mut pos = 0usize;
-    let mut next_s = || { let t = tokens[pos]; pos += 1; t };
-    let mut next_i = || next_s().parse::<i64>().unwrap();
+    let mut sc = Scanner::new(&input);
 
-    let n = next_i() as usize;
-    let b = next_i() as usize;
+    let n = sc.i() as usize;
+    let b = sc.i() as usize;
 
     let mut names = Vec::new();
     let mut costs = Vec::new();
     let mut golds = Vec::new();
 
     for _ in 0..n {
-        let name = next_s().to_string();
-        let cost = next_i() as usize;
-        let v = next_i() as usize;
-        let e = next_i() as usize;
+        let name = sc.s().to_string();
+        let cost = sc.i() as usize;
+        let v = sc.i() as usize;
+        let e = sc.i() as usize;
         let mut edges = Vec::new();
         for _ in 0..e {
-            let u = next_i() as usize;
-            let w = next_i() as usize;
-            let cap = next_i();
+            let u = sc.i() as usize;
+            let w = sc.i() as usize;
+            let cap = sc.i();
             edges.push((u, w, cap));
         }
         let gold = max_flow(v, &edges, 0, v - 1);

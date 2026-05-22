@@ -102,4 +102,8 @@
 
 #pagebreak()
 
+= Use of AI
+
+During the preparation of this report and the accompanying source code, members of the group made use of generative AI tools (large-language-model assistants) as a writing aid and as a sparring partner for algorithmic discussion. Specifically, AI was used to help phrase explanations more clearly, to challenge our reasoning when discussing algorithmic choices, and to point out gaps in our complexity arguments.
+
 #bibliography("cite.bib")
