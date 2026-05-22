@@ -21,7 +21,7 @@ The actual problem the contestant is tasked with is to compute the maximum total
 
 == Accepted Solutions
 
-All intended solutions decompose the problem into #highlight[two independent subproblems applied sequentially]: first compute a per-stronghold gold value via max-flow, then select the optimal stronghold subset via 0/1 knapsack DP. The Python and Rust accepted submissions implement this decomposition identically; the Rust version is included as a fast reference.
+All intended solutions decompose the problem into two independent subproblems applied sequentially: first compute a per-stronghold gold value via max-flow, then select the optimal stronghold subset via 0/1 knapsack DP. The Python and Rust accepted submissions implement this decomposition identically; the Rust version is included as a fast reference.
 
 === Per-stronghold Max-flow
 

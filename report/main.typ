@@ -2,31 +2,20 @@
 // APS 2026 — Project report
 
 #set document(title: "Project Report — APS 2026", author: "Group H")
-#set page(paper: "a4", margin: (x: 2.5cm, y: 3cm))
+#set page(paper: "a4", margin: (x: 4cm, y: 4cm))
 #set heading(numbering: "1.")
-#set par(justify: true)
+#set par(justify: true, leading: 0.65em, spacing: 1.2em)
+#set text(font: "Libertinus Serif")
 
 #let accent = rgb("#C0392B")
 
 #show link: it => text(fill: accent)[#it]
 
-#set highlight(
-  fill: gradient.linear(
-    rgb("#80FFDB"),
-    rgb("#48CAE4"),
-    rgb("#06D6A0"),
-    rgb("#0096C7"),
-    rgb("#80FFDB"),
-    angle: 135deg,
-  ),
-  stroke: 0.75pt + rgb("#06D6A0"),
-  radius: 4pt,
-  extent: 3pt,
-)
-
-// --- Cover page ---
+// --- Cover page (no header) ---
 #page(
   margin: (x: 3cm, y: 4cm),
+  header: none,
+  footer: none,
   {
     v(1fr)
 
@@ -62,11 +51,38 @@
 )
 
 // --- Body ---
-#set page(numbering: "1")
+#let body-header = context {
+  let elems = query(selector(heading.where(level: 1)).before(here()))
+  set text(size: 8pt)
+  smallcaps[Algorithmic Problem Solving 2026]
+  h(1fr)
+  if elems.len() > 0 {
+    let cur = elems.last()
+    if cur.numbering != none {
+      let num = counter(heading).at(cur.location()).at(0)
+      smallcaps[#num #cur.body]
+    }
+  }
+  v(-0.4em)
+  line(length: 100%, stroke: 0.5pt)
+}
+
+// Contents page — no header, tighter top margin
+#set page(numbering: "1", header: none, margin: (top: 2.5cm, bottom: 3cm, x: 4cm))
 #counter(page).update(1)
 
-#outline(indent: auto)
+#outline(
+  indent: auto,
+  depth: 3,
+  title: [#text(weight: "bold", size: 22pt)[Contents] #v(0.5em)],
+)
 #pagebreak()
+
+// restore body margins
+#set page(margin: (x: 4cm, y: 4cm))
+
+// Body — running header on
+#set page(header: body-header)
 
 #include "sections/abstract.typ"
 #include "sections/designed-problem.typ"
@@ -74,6 +90,8 @@
 
 #pagebreak()
 
+// Appendices — no header, tighter margins so code fits
+#set page(header: none, margin: (x: 2.5cm, y: 3cm))
 = Appendices
 #show raw.where(block: true): set text(size: 8pt)
 #include "sections/appendices/roberthood.typ"
