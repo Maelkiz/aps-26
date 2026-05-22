@@ -9,7 +9,7 @@
 
 The maximum distance between any two points in a finite set is always achieved by two points on the convex hull of the set. This reduces the problem to two steps: compute the convex hull, then find the diameter of the hull polygon.
 
-The convex hull is computed using Andrew's monotone chain algorithm, which sorts the points lexicographically and constructs the lower and upper hull in two linear passes. The result is the vertices of the hull in counter-clockwise order.
+The convex hull is computed using Andrew's monotone chain algorithm @laaksonen2018competitive[§30.3, p. 278], which sorts the points lexicographically and constructs the lower and upper hull in two linear passes. The result is the vertices of the hull in counter-clockwise order.
 
 The diameter of the convex polygon is then found using the rotating calipers technique. For each edge of the hull, the algorithm advances an antipodal pointer $j$ as long as the next vertex is farther from the edge than the current one. The cross product of the edge direction and the vector between consecutive candidate points determines the direction to move $j$. Both endpoints of the current edge are checked against $j$ at each step, so no antipodal pair is missed.
 
@@ -52,6 +52,7 @@ Running this input on the solution completed in approximately 0.73 seconds in CP
 
 === Implementation notes
 
+- *Attributed to:* Lukas Shaghashvili-Johanesson (lush\@itu.dk)
 - *Language used:* Python 3
-- *Files:* `solutions/geometry/roberthood.py`
-- *How to run:* `python3 solutions/geometry/roberthood.py < input.txt`
+- *Source listing:* @app-roberthood
+- *How to run:* pipe the input file into the script via standard input.

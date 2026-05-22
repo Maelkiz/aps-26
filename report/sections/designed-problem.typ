@@ -25,11 +25,11 @@ All intended solutions decompose the problem into #highlight[two independent sub
 
 === Per-stronghold Max-flow
 
-For each stronghold $i$, the maximum flow from room $0$ (Gold Vein) to room $V_i - 1$ (entrance) is computed using *Edmonds-Karp*, a BFS-augmented variant of Ford-Fulkerson. BFS guarantees that each augmenting path is shortest in the residual graph, giving a running time of $O(V_i dot.c E_i^2)$ per stronghold. With the parameter bounds $V_i <= 15$ and $E_i <= 40$, this is at most $15 dot.c 40^2 = 24000$ residual-edge inspections per stronghold, and at most $N dot.c 24000 = 1.2 dot.c 10^6$ inspections across the whole input. The residual graph's reverse-edge handling is required to permit later corrections of previously committed flow.
+For each stronghold $i$, the maximum flow from room $0$ (Gold Vein) to room $V_i - 1$ (entrance) is computed using *Edmonds-Karp*, a BFS-augmented variant of Ford-Fulkerson @laaksonen2018competitive[§20.1, p. 182]. BFS guarantees that each augmenting path is shortest in the residual graph, giving a running time of $O(V_i dot.c E_i^2)$ per stronghold. With the parameter bounds $V_i <= 15$ and $E_i <= 40$, this is at most $15 dot.c 40^2 = 24000$ residual-edge inspections per stronghold, and at most $N dot.c 24000 = 1.2 dot.c 10^6$ inspections across the whole input. The residual graph's reverse-edge handling is required to permit later corrections of previously committed flow.
 
 === 0/1 Knapsack DP
 
-Once each stronghold has a gold value $g_i$ and a cost $c_i$, the selection problem reduces to 0/1 knapsack. A two-dimensional bottom-up DP fills the table
+Once each stronghold has a gold value $g_i$ and a cost $c_i$, the selection problem reduces to 0/1 knapsack @laaksonen2018competitive[§7.4, p. 72]. A two-dimensional bottom-up DP fills the table
 $
   "dp"[i][j] = cases(
     "dp"[i-1][j] & "if " j < c_i,

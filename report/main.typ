@@ -71,3 +71,17 @@
 #include "sections/abstract.typ"
 #include "sections/designed-problem.typ"
 #include "sections/solved-problems.typ"
+
+#pagebreak()
+
+= Appendices
+#show raw.where(block: true): set text(size: 8pt)
+#include "sections/appendices/roberthood.typ"
+#pagebreak()
+#include "sections/appendices/cookieselection.typ"
+#pagebreak()
+#include "sections/appendices/jaggedskyline.typ"
+
+#pagebreak()
+
+#bibliography("cite.bib")
