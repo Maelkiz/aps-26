@@ -37,7 +37,7 @@ For $N = 2 times 10^5$ and a typical time limit of 1-2 seconds, roughly $2 times
 
 === Empirical worst-case testing
 
-A worst-case input alternates insertions and removals to keep the holding area non-empty throughout. The following generator was used:
+A worst-case input inserts $N$ cookies then issues $N$ queries, exercising the BIT at maximum size. The following generator was used:
 
 ```python
 N = 100000
