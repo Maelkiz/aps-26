@@ -87,7 +87,7 @@
     [
       *TLE foil — Brute force* \
       Enumerate all $2^N$ subsets \
-      $O(2^N dot (N + V dot E^2))$ \
+      $O(N dot V dot E^2 + 2^N dot N)$ \
       Correct, but $2^{50} approx 10^{15}$ at $N=50$
     ],
     [
