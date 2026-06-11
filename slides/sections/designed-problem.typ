@@ -98,7 +98,7 @@
 
 // ── Slide 5: Foils & Test Design ─────────────────────────────────────────────
 #page[
-  #slide-title[Foils & Test Design]
+  #slide-title[Foils]
   #grid(
     columns: (1fr, 1fr),
     gutter: 1.2em,
