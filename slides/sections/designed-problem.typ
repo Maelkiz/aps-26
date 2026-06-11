@@ -1,4 +1,4 @@
-#import "../theme.typ": accent, light-bg, slide-title, tag, note
+#import "../theme.typ": accent, light-bg, slide-title, tag, note, illustration
 
 // ── Section divider: The Siege ────────────────────────────────────────────────
 #page(fill: accent)[
@@ -25,13 +25,16 @@
       - *Warrior budget* $B$: conquering stronghold $i$ costs $c_i$ warriors
       - *Goal:* choose a subset to *maximise total gold* within budget $B$; output indices ascending
     ],
-    block(fill: light-bg, inset: 0.8em, radius: 4pt, width: 8cm)[
-      *Bounds* \
-      #v(0.2em)
-      $1 <= N <= 50$ \
-      $1 <= B <= 1000$ \
-      $2 <= V_i <= 15$ \
-      $1 <= E_i <= 40$
+    stack(spacing: 1.2em)[
+      #illustration(image("../wolf_riders.png", width: 8cm))
+      #block(fill: light-bg, inset: 0.8em, radius: 4pt, width: 8.35cm)[
+        *Bounds* \
+        #v(0.2em)
+        $1 <= N <= 50$ \
+        $1 <= B <= 1000$ \
+        $2 <= V_i <= 15$ \
+        $1 <= E_i <= 40$
+      ]
     ],
   )
 ]
@@ -39,16 +42,22 @@
 // ── Slide 3: Solution — Max-flow ─────────────────────────────────────────────
 #page[
   #slide-title[Subproblem 1 — Max-flow per Stronghold]
-  - *Algorithm:* Edmonds-Karp — BFS-augmented Ford-Fulkerson
-  - BFS finds the *shortest* augmenting path in the residual graph each iteration
-  - *Residual graph:* reverse edges allow later correction of committed flow
+  #grid(
+    columns: (1fr, auto),
+    gutter: 1.5em,
+    [
+      - *Algorithm:* Edmonds-Karp — BFS-augmented Ford-Fulkerson
+      - BFS finds the *shortest* augmenting path in the residual graph each iteration
+      - *Residual graph:* reverse edges allow later correction of committed flow
 
-  #v(0.3em)
-  *Complexity per stronghold:*
-  $ O(V_i dot E_i^2) $
+      #v(0.3em)
+      *Complexity per stronghold:*
+      $ O(V_i dot E_i^2) $
 
-  With $V_i <= 15$, $E_i <= 40$: at most $15 times 40^2 = 24\,000$ inspections per stronghold.
-  At $N = 50$: at most $1.2 times 10^6$ total residual-edge inspections.
+      With $V_i <= 15$, $E_i <= 40$: at most $24\,000$ inspections.
+    ],
+    illustration(image("../map_of_gold.png", width: 7cm))
+  )
 
   #v(0.3em)
   #note[Run Edmonds-Karp independently on each stronghold. Results: gold values $g_1, g_2, dots, g_N$.]
@@ -57,8 +66,16 @@
 // ── Slide 4: Solution — Knapsack DP ──────────────────────────────────────────
 #page[
   #slide-title[Subproblem 2 — 0/1 Knapsack DP]
-  Each stronghold now has gold value $g_i$ and warrior cost $c_i$ — classic 0/1 knapsack with capacity $B$.
+  #grid(
+    columns: (1fr, auto),
+    gutter: 1.2em,
+    [
+      Each stronghold now has gold value $g_i$ and warrior cost $c_i$ — classic 0/1 knapsack with capacity $B$.
+    ],
+    illustration(image("../grogg_planing.png", width: 6cm))
+  )
 
+  #v(-0.5em)
   *Recurrence:*
   $
     "dp"[i][j] = cases(
@@ -67,14 +84,15 @@
     ), quad "dp"[0][j] = 0
   $
 
+  #v(0.2em)
   *Backtrack* from $"dp"[N][B]$: stronghold $i$ chosen iff $"dp"[i][j] eq.not "dp"[i-1][j]$.
 
-  #v(0.3em)
+  #v(0.5em)
   #grid(
     columns: (1fr, 1fr),
     gutter: 1em,
     note[DP: $O(N dot B) = 5 times 10^4$ steps],
-    note[Combined: $O(N V_max E_max^2 + N B)$ — dominated by max-flows],
+    note[Combined: $O(N V_max E_max^2 + N B)$],
   )
 ]
 

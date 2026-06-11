@@ -10,3 +10,13 @@
 #let note(body) = block(
   fill: light-bg, inset: 0.7em, radius: 4pt, width: 100%,
 )[#text(size: 18pt)[#body]]
+#let illustration(body) = {
+  set align(center)
+  block(
+    fill: white,
+    inset: 4pt,
+    radius: 6pt,
+    stroke: 0.5pt + gray.lighten(50%),
+    body
+  )
+}

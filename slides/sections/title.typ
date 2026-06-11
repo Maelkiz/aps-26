@@ -1,4 +1,4 @@
-#import "../theme.typ": accent, light-bg, slide-title, tag, note
+#import "../theme.typ": accent, light-bg, slide-title, tag, note, illustration
 
 // ── Slide 1: Title ────────────────────────────────────────────────────────────
 #page(fill: light-bg)[
